@@ -2,12 +2,12 @@
 
     // theme color
 
-$color-primary: rgba(38,38,38,1);
+$color-primary: rgba(3,173,37,1);
 
     // media background
 
-$has-media-background: false;
-$media-path: url(https://i.pinimg.com/originals/66/3f/ec/663fecd48229b083cf90c66a0be7c1b1.jpg);
+$has-media-background: true;
+$media-path: url(../img/background.png);
 
     // fonts
 
@@ -15,7 +15,7 @@ $font-primary: "Helvetica Neue";
 
 // colors
 
-$alpha-transparent: 0.5;
+$alpha-transparent: 0.9;
 
 $color-light: rgba(255,255,255,1);
 $color-light-transparent: rgba(255,255,255,$alpha-transparent);
@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
 
 // sizing options
 
-$logo-width: 100px;
+$logo-width: 40px;
 $logo-atf-width: 300px;
 
 // content
