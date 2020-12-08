@@ -1,0 +1,213 @@
+// config
+
+    // theme color
+
+$color-primary: rgba(38,38,38,1);
+
+    // media background
+
+$has-media-background: false;
+$media-path: url(https://i.pinimg.com/originals/66/3f/ec/663fecd48229b083cf90c66a0be7c1b1.jpg);
+
+    // fonts
+
+$font-primary: "Helvetica Neue";
+
+// colors
+
+$alpha-transparent: 0.5;
+
+$color-light: rgba(255,255,255,1);
+$color-light-transparent: rgba(255,255,255,$alpha-transparent);
+$color-dark: rgba(58,58,58,1);
+$color-dark-transparent: rgba(58,58,58,$alpha-transparent);
+
+@function set-complementary-color($color) {  
+    @if (lightness($color) > 40) {
+      @return $color-dark;
+    }
+    @else {
+      @return $color-light;
+    }
+}
+@function set-complementary-color-flip($color) {  
+    @if (lightness($color) > 40) {
+      @return $color-dark;
+    }
+    @else {
+      @return $color-light;
+    }
+}
+@function set-complementary-color-transparent($color) {  
+    @if (lightness($color) > 40) {
+      @return $color-dark-transparent;
+    }
+    @else {
+      @return $color-light-transparent;
+    }
+}
+
+$color-complementary: set-complementary-color($color-primary);
+$color-complementary-transparent: set-complementary-color-transparent($color-primary);
+$color-complementary-flip: set-complementary-color-flip($color-complementary);
+// typography
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+// sizing options
+
+$logo-width: 100px;
+$logo-atf-width: 300px;
+
+// content
+
+body {
+    font-family: $font-primary;
+    font-weight: 300;
+    font-size: 14px;
+}
+h1 {
+    font-size: 2.4em;
+}
+h2 {
+    font-size: 2.2em;
+}
+h3 {
+    font-size: 2em;
+}
+h4 {
+    font-size: 1.8em;
+}
+h5 {
+    font-size: 1.6em;
+}
+h6 {
+    font-size: 1.4em;
+}
+a {
+    text-decoration: none;
+    font-size: 1.3em;
+    color: $color-primary;
+    font-weight: 300;
+    &:visited,
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
+}
+.media-background {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: blue;
+    @if ($has-media-background) {
+        background: $media-path;
+    }
+    background-size: cover;
+    &:after {
+        content: '';
+        background: $color-complementary-transparent;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+.header {
+    height: 80px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    padding-left: calc((100vw - 1170px)/2);
+    padding-right: calc((100vw - 1170px)/2);
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: $color-complementary;
+}
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.header-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;    
+    a {
+        margin: 0 10px;
+    }
+}
+@media (max-width: 991px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+    }
+    .header-logo,
+    .header-links {
+        margin: 20px 0;
+        justify-content: center;
+    }
+}
+.logo {
+    max-width: $logo-width;
+    width: 100%;
+}
+.logo-atf {
+    max-width: $logo-atf-width;
+    width: 100%;
+    margin: 20px 0;
+}
+.block {
+    background: $color-complementary;
+    color: $color-complementary-flip;
+    padding: 15px;
+    min-height: calc(100vh - 80px);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .block-space {
+        justify-content: space-between;
+    }
+    &.block-atf {
+        padding-top: 80px;
+        background: $color-complementary;
+        @if ($has-media-background) {
+            background: transparent;
+        }
+    }
+    &.block-alternate {
+        background: $color-complementary-flip;
+        color: $color-complementary;
+    }
+    &.block-row {
+        flex-direction: row;
+    }
+    &.block-col {
+        flex-direction: column;
+    }
+}
+@media (max-width: 991px) {
+    .block {
+        &.block-col,
+        &.block-row {
+            flex-direction: column;
+        }
+    }
+}
